@@ -255,9 +255,11 @@ function getTail(arr, n) {
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  // throw new Error('Not implemented');
+  return arr.concat(arr);
 }
+// console.log( doubleArray(['Ace', 10, true]))
 
 /**
  * Concatenates all elements from specified array into single string with ',' delimiter.
@@ -270,10 +272,11 @@ function doubleArray(/* arr */) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  // throw new Error('Not implemented');
+  return arr.join(',');
 }
-
+// console.log(toStringList([0, false, 'cat', NaN, true, '']))
 /**
  * Returns array containing only unique values from the specified array.
  *
@@ -286,9 +289,11 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  // throw new Error('Not implemented');
+  return [...new Set(arr)];
 }
+// console.log(distinct([1, 2, 3, 3, 2, 1]));
 
 /**
  * Creates an n-dimensional array and fills it with zeros.
@@ -303,9 +308,14 @@ function distinct(/* arr */) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+function createNDimensionalArray(n, size) {
+  // throw new Error('Not implemented');
+  return Array.from({ length: n }).reduce(
+    (acc) => Array.from({ length: size }).fill(acc),
+    0
+  );
 }
+// console.log(createNDimensionalArray(4, 2));
 
 /**
  * Flattens a nested array into a single-level array.
@@ -318,9 +328,11 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  // throw new Error('Not implemented');
+  return nestedArray.flat(Infinity);
 }
+// console.log(flattenArray([1, [2, [3, 4], 5], 6]));
 
 /**
  * Projects each element of the specified array to a sequence
@@ -335,9 +347,11 @@ function flattenArray(/* nestedArray */) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  // throw new Error('Not implemented');
+  return arr.flatMap(childrenSelector);
 }
+// console.log(selectMany(['one','two','three'], (x) => x.split('')))
 
 /**
  * Every month, you record your income and expenses.
