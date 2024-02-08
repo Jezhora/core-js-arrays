@@ -366,9 +366,24 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  // throw new Error('Not implemented');
+  if (arr.length === 0 || !Array.isArray(arr)) return 0;
+
+  return arr
+    .reduce((acc, el) => {
+      acc.push(el[0] - el[1]);
+
+      return acc;
+    }, [])
+    .reduce((summ, num) => summ + num);
 }
+// console.log(
+//   calculateBalance([
+//     [10, 8],
+//     [1, 5],
+//   ])
+// );
 
 /**
  * Breaks an array into chunks of the specified size.
@@ -382,9 +397,17 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  // throw new Error('Not implemented');
+  return arr.reduce((acc, _, index) => {
+    if (index % chunkSize === 0) {
+      const chunk = arr.slice(index, index + chunkSize);
+      acc.push(chunk);
+    }
+    return acc;
+  }, []);
 }
+// console.log(createChunks(['a', 'b', 'c', 'd', 'e'], 2));s
 
 /**
  * Generates an array of odd numbers of the specified length.
@@ -398,9 +421,16 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  // throw new Error('Not implemented');
+  return Array.from({ length: len * 2 }).reduce((acc, _, index) => {
+    if (index % 2 !== 0) {
+      acc.push(index);
+    }
+    return acc;
+  }, []);
 }
+// console.log(generateOdds(5));
 
 /**
  * Returns an element from the multidimensional array by the specified indices.
@@ -430,9 +460,21 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  // throw new Error('Not implemented');
+  if (arr.length === 0) return 0;
+  return arr
+    .reduce((acc, el) => {
+      if (el) {
+        acc.push(0);
+      } else {
+        acc.push(1);
+      }
+      return acc;
+    }, [])
+    .reduce((summ, num) => summ + num);
 }
+// console.log(getFalsyValuesCount([null, undefined, NaN, false, 0, '']));
 
 /**
  * Creates an identity matrix of the specified size.
@@ -452,9 +494,21 @@ function getFalsyValuesCount(/* arr */) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  // throw new Error('Not implemented');
+
+  return Array.from({ length: n }, () =>
+    Array.from({ length: n }, () => 0)
+  ).map((row, rowInd) =>
+    row.map((col, colInd) => {
+      if (rowInd === colInd) {
+        return col + 1;
+      }
+      return 0;
+    })
+  );
 }
+// console.log(getIdentityMatrix(5));
 
 /**
  * Returns an array containing indices of odd elements in the input array.
